@@ -12,10 +12,10 @@ O sistema segue uma arquitetura modular inspirada em microserviços, organizada 
 
 ## 3. Estrutura de Pastas
 Descrever:
-- inventum/models → entidades
-- inventum/services → lógica de negócio
-- inventum/views → controle
-- inventum/templates → interface
+- inventory/models → entidades
+- inventory/services → lógica de negócio
+- inventory/views → controle
+- inventory/templates → interface
 
 ## 4. Fluxo de Dados
 Usuário → View → Service → Model → Banco de Dados
