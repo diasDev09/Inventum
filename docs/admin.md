@@ -82,5 +82,3 @@ python manage.py runserver
 ### ✔ Resultado esperado
 Ao acessar o admin, você poderá gerenciar todo o sistema Inventum via interface web.
 ```
-
----
