@@ -16,7 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
+from inventory.views.produto_views import lista_produtos, update_produto, create_produto, delete_produto
+from inventory.views.movimentacao_views import entrada_produto, saida_produto, historico_movimentacoes
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', TemplateView.as_view(template_name="base/base.html"), name='home'),
+    path('produtos/', lista_produtos, name='lista_produtos'),
+    path('produtos/update/<int:id>/', update_produto, name='update_produto'),
+    path('produtos/create/', create_produto, name='create_produto'),
+    path('produtos/delete/<int:id>/', delete_produto, name='delete_produto'),
+    path('movimentacoes/entrada/', entrada_produto, name='entrada_produto'),
+    path('movimentacoes/saida/', saida_produto, name='saida_produto'),
+    path('movimentacoes/', historico_movimentacoes, name='historico_movimentacoes'),
 ]
