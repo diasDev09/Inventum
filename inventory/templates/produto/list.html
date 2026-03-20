@@ -3,19 +3,24 @@
 {% block content %}
 
 <h2>Lista de Produtos</h2>
-<a href="/produtos/create/">➕ Novo Produto</a>
+<a href="{% url 'criar_produto' %}" class="btn-primary">
+    ➕ Novo Produto
+</a>
 
 {% for produto in produtos %}
 <div class="card">
     <h3>{{ produto.nome }}</h3>
-    <p>Categoria: {{ produto.categoria.nome }}</p>
+    <p>{{ produto.descricao }}</p>
     <p>Preço: R$ {{ produto.preco }}</p>
+
     <p>Estoque: {{ produto.estoque.quantidade }}</p>
+
     {% if produto.estoque.quantidade <= 5 %}
-    <p style="color:red;">⚠️ Estoque baixo</p>
+        <p class="alerta">⚠️ Estoque baixo</p>
     {% endif %}
-    <a href="/produtos/update/{{ produto.id }}/">Editar</a>
-    <a href="/produtos/delete/{{ produto.id }}/">Excluir</a>
+
+    <a href="{% url 'atualizar_produto' produto.id %}">Editar</a>
+    <a href="{% url 'deletar_produto' produto.id %}" onclick="return confirmarExclusao()"> Deletar</a>
 </div>
 {% endfor %}
 

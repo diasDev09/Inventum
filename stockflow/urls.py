@@ -32,7 +32,7 @@ urlpatterns = [
     path('', dashboard, name='home'),
     path('', TemplateView.as_view(template_name="base/base.html"), name='home'),
     path('produtos/', lista_produtos, name='lista_produtos'),
-    path('produtos/criar/', criar_produto, name='criar_produto'),
+    path('/produtos/criar/', criar_produto, name='criar_produto'),
     path('produtos/editar/<int:id>/', atualizar_produto, name='atualizar_produto'),
     path('produtos/deletar/<int:id>/', deletar_produto, name='deletar_produto'),
     path('movimentacoes/entrada/', entrada_produto, name='entrada_produto'),
