@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2>📊 Dashboard</h2>
+
+<div class="card">
+    <p>Total de produtos: {{ total_produtos }}</p>
+    <p style="color:red;">Estoque baixo: {{ estoque_baixo }}</p>
+</div>
+
+<h3>Últimas movimentações</h3>
+
+{% for mov in movimentacoes %}
+<div class="card">
+    {{ mov.produto.nome }} - {{ mov.get_tipo_display }} - {{ mov.quantidade }}
+</div>
+{% endfor %}
+
+{% endblock %}

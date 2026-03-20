@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from inventory.models import Movimentacao, Produto
 from inventory.forms.movimentacao_form import MovimentacaoForm
 
@@ -22,14 +23,16 @@ def saida_produto(request):
         form = MovimentacaoForm(request.POST)
         if form.is_valid():
             mov = form.save(commit=False)
+
+            estoque = mov.produto.estoque
+
+            if mov.quantidade > estoque.quantidade:
+                messages.error(request, "Estoque insuficiente")
+                return redirect('saida_produto')
+
             mov.tipo = 'S'
             mov.save()
             return redirect('historico_movimentacoes')
-    else:
-        form = MovimentacaoForm()
-
-    return render(request, 'movimentacao/saida.html', {'form': form})
-
 
 def historico_movimentacoes(request):
     movimentacoes = Movimentacao.objects.all().select_related('produto').order_by('-data')

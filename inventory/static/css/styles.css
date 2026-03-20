@@ -55,3 +55,22 @@ nav a:hover {
     border-bottom: 2px solid #2563eb;
 }
 
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}

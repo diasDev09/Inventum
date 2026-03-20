@@ -5,7 +5,7 @@ from inventory.forms.produto_form import ProdutoForm
 
 # Lista de produtos 
 def lista_produtos(request):
-    produtos = Produto.objects.all().select_related('categoria')
+    produtos = Produto.objects.all().select_related('categoria').prefetch_related('estoque')
 
     return render(request, 'produto/list.html', {
         'produtos': produtos

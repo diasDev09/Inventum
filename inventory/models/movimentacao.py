@@ -15,15 +15,16 @@ class Movimentacao(models.Model):
     data = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        estoque, created = Estoque.objects.get_or_create(produto=self.produto)
+        estoque, _ = Estoque.objects.get_or_create(produto=self.produto)
 
         if self.tipo == 'E':
-            estoque.adicionar(self.quantidade)
-
+            estoque.quantidade += self.quantidade
         elif self.tipo == 'S':
-            estoque.remover(self.quantidade)
+            estoque.quantidade -= self.quantidade
+
+        estoque.save()
 
         super().save(*args, **kwargs)
-
+        
     def __str__(self):
         return f"{self.produto.nome} - {self.get_tipo_display()} - {self.quantidade}"

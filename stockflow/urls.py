@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
+from inventory.views.dashboard_views import dashboard
 from inventory.views.produto_views import lista_produtos, update_produto, create_produto, delete_produto
 from inventory.views.movimentacao_views import entrada_produto, saida_produto, historico_movimentacoes
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', dashboard, name='home'),
     path('', TemplateView.as_view(template_name="base/base.html"), name='home'),
     path('produtos/', lista_produtos, name='lista_produtos'),
     path('produtos/update/<int:id>/', update_produto, name='update_produto'),

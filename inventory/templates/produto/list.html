@@ -10,6 +10,10 @@
     <h3>{{ produto.nome }}</h3>
     <p>Categoria: {{ produto.categoria.nome }}</p>
     <p>Preço: R$ {{ produto.preco }}</p>
+    <p>Estoque: {{ produto.estoque.quantidade }}</p>
+    {% if produto.estoque.quantidade <= 5 %}
+    <p style="color:red;">⚠️ Estoque baixo</p>
+    {% endif %}
     <a href="/produtos/update/{{ produto.id }}/">Editar</a>
     <a href="/produtos/delete/{{ produto.id }}/">Excluir</a>
 </div>
