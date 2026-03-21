@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="flex flex-col mb-8 gap-4">
+    <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Lista de Produtos</h2>
+    
+    <div class="flex justify-start">
+        <a href="{% url 'criar_produto' %}" class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all shadow-sm">
+            <span class="mr-2">➕</span> Novo Produto 
+        </a>
+    </div>
+</div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for produto in produtos %}
+        <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+            
+            <div class="p-5 flex-grow">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ produto.nome }}</h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ produto.descricao }}</p>
+                
+                <div class="flex flex-col gap-1">
+                    <p class="text-lg font-semibold text-gray-800">R$ {{ produto.preco }}</p>
+                    <p class="text-sm text-gray-500 font-medium">
+                        Estoque: <span class="text-gray-900">{{ produto.estoque.quantidade }}</span>
+                    </p>
+                </div>
+
+                {% if produto.estoque.quantidade <= 5 %}
+                <div class="mt-4 flex items-center p-2 bg-amber-50 border border-amber-200 rounded-md text-amber-700 text-xs font-bold uppercase tracking-wider">
+                    <span class="mr-2 text-sm">⚠️</span> Estoque baixo
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="bg-gray-50 px-5 py-3 border-t border-gray-100 flex justify-between items-center mt-auto">
+                <a href="{% url 'atualizar_produto' produto.id %}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors">
+                    Editar
+                </a>
+                <a href="{% url 'deletar_produto' produto.id %}" onclick="return confirmarExclusao()" class="text-red-500 hover:text-red-700 font-medium text-sm transition-colors">
+                    Deletar
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-12 text-center">
+            <p class="text-gray-400 text-lg">Nenhum produto cadastrado até o momento.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function confirmarExclusao() {
+        return confirm('Tem certeza que deseja excluir este produto? Esta ação não pode ser desfeita.');
+    }
+</script>
+
+{% endblock %}

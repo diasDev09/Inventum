@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block subnav %}
+<nav class="subnav">
+    <a href="{% url 'entrada_produto' %}">⬆️ Entrada</a>
+    <a href="{% url 'saida_produto' %}">⬇️ Saída</a>
+    <a href="{% url 'historico_movimentacoes' %}">📊 Histórico</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+<h2>Histórico de Movimentações</h2>
+
+{% for mov in movimentacoes %}
+<div class="card">
+    <h3>{{ mov.produto.nome }}</h3>
+    <p>Tipo: {{ mov.get_tipo_display }}</p>
+    <p>Quantidade: {{ mov.quantidade }}</p>
+    <p>Data: {{ mov.data }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

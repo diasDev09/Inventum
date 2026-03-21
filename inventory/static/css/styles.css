@@ -1,0 +1,67 @@
+/* RESET */
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    margin: 0;
+}
+
+/* HEADER */
+header {
+    background: #1e293b;
+    color: white;
+    padding: 15px;
+}
+
+header nav a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+/* SUBNAV */
+.subnav {
+    background: #e2e8f0;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 15px;
+}
+
+.subnav a {
+    color: #1e293b;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* CONTAINER */
+main {
+    padding: 20px;
+}
+
+/* CARDS */
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* BOTÕES */
+button {
+    background: #2563eb;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* ALERTA */
+.alerta {
+    color: red;
+    font-weight: bold;
+}

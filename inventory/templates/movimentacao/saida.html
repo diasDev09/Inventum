@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block subnav %}
+<nav class="subnav">
+    <a href="{% url 'entrada_produto' %}">⬆️ Entrada</a>
+    <a href="{% url 'saida_produto' %}">⬇️ Saída</a>
+    <a href="{% url 'historico_movimentacoes' %}">📊 Histórico</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+<h2>Saída de Produto</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrar Saída</button>
+</form>
+
+{% endblock %}
